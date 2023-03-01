@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 
+// eslint-disable-next-line no-undef
 const args = require('minimist')(process.argv.slice(2));
 
 let HC = "";
