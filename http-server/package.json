@@ -1,0 +1,39 @@
+{
+<<<<<<< HEAD
+  "name": "http-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.8"
+  }
+}
+=======
+    "name": "http-server",
+    "version": "1.0.0",
+    "description": "NOne",
+    "main": "index.js",
+    "dependencies": {
+      "minimist": "^1.2.8"
+    },
+    "scripts": {
+      "start": "index.js",
+      "test": "port 3000"
+    },
+    "repository": {
+      "type": "git",
+      "url": "wd201"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "eslint": "^8.34.0"
+    }
+  }
+>>>>>>> adbf21765d818e5e7cb7df278f396b4398e84d0c
