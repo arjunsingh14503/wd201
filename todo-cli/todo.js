@@ -1,48 +1,59 @@
 const todoList = () => {
-    all = []
-    const add = (todoItem) => {
-      all.push(todoItem)
-    }
-    const markAsComplete = (index) => {
-      all[index].completed = true
-    }
-  
-    const overdue = () => {
-      const now = new Date()
-      return all.filter(item => new Date(item.dueDate) < now && !item.completed)
-    }
-  
-    const dueToday = () => {
-      const today = new Date().toISOString().split('T')[0]
-      return all.filter(item => item.dueDate === today && !item.completed)
-    }
-  
-    const dueLater = () => {
-      const now = new Date()
-      return all.filter(item => new Date(item.dueDate) > now && !item.completed)
-    }
-  
-    const toDisplayableList = (list) => {
-      return list.map((item, index) => {
-        const prefix = `${index + 1}. [${item.completed ? 'x' : ' '}] `
-        const title = item.title
-        const suffix = item.dueDate === new Date().toISOString().split('T')[0] ? '' : ` (${item.dueDate})`
-        return prefix + title + suffix
-      }).join('\n')
-    }
-  
-    return {
-      all,
-      add,
-      markAsComplete,
-      overdue,
-      dueToday,
-      dueLater,
-      toDisplayableList
-    };
+  all = []
+  const add = (todoItem) => {
+    all.push(todoItem)
+  }
+  const markAsComplete = (index) => {
+    all[index].completed = true
+  }
+
+  const overdue = () => {
+    return all.filter(
+      (item) => item.dueDate < new Date().toLocaleDateString("en-CA")
+    );
+    // Write the date check condition here and return the array
+    // of overdue items accordingly.
+  }
+
+  const dueToday = () => {
+    return all.filter(
+      (item) => item.dueDate === new Date().toLocaleDateString("en-CA")
+    );
+    // Write the date check condition here and return the array
+    // of todo items that are due today accordingly.
+  }
+
+  const dueLater = () => {
+    return all.filter(
+      (item) => item.dueDate > new Date().toLocaleDateString("en-CA")
+    );
+    // Write the date check condition here and return the array
+    // of todo items that are due later accordingly.
+  }
+
+  const toDisplayableList = (list) => {
+    return list.map(
+      (item) =>
+        `${item.completed ? "[x]" : "[]"} ${item.title} ${
+          item.dueDate === new Date().toLocaleDateString("en-CA")
+        }`
+    );
+    // Format the To-Do list here, and return the output string
+    // as per the format given above.
+  }
+
+  return {
+    all,
+    add,
+    markAsComplete,
+    overdue,
+    dueToday,
+    dueLater,
+    toDisplayableList
   };
-  
-  // ####################################### #
+};
+
+// ####################################### #
 // DO NOT CHANGE ANYTHING BELOW THIS LINE. #
 // ####################################### #
 
@@ -86,4 +97,3 @@ let itemsDueLater = todos.dueLater()
 let formattedItemsDueLater = todos.toDisplayableList(itemsDueLater)
 console.log(formattedItemsDueLater)
 console.log("\n\n")
-  
