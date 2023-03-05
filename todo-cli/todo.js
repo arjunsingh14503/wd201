@@ -8,38 +8,31 @@ const todoList = () => {
   }
 
   const overdue = () => {
-    return all.filter(
-      (item) => item.dueDate < new Date().toLocaleDateString("en-CA")
-    );
-    // Write the date check condition here and return the array
-    // of overdue items accordingly.
+    const today = new Date();
+    return all.filter(todoItem => {
+      return !todoItem.completed && new Date(todoItem.dueDate) < today;
+    });
   }
 
   const dueToday = () => {
-    return all.filter(
-      (item) => item.dueDate === new Date().toLocaleDateString("en-CA")
-    );
-    // Write the date check condition here and return the array
-    // of todo items that are due today accordingly.
+    const today = new Date();
+    return all.filter(todoItem => {
+      return !todoItem.completed && new Date(todoItem.dueDate).toDateString() === today.toDateString();
+    });
   }
 
   const dueLater = () => {
-    return all.filter(
-      (item) => item.dueDate > new Date().toLocaleDateString("en-CA")
-    );
-    // Write the date check condition here and return the array
-    // of todo items that are due later accordingly.
+    const today = new Date();
+    return all.filter(todoItem => {
+      return !todoItem.completed && new Date(todoItem.dueDate) > today;
+    });
   }
 
   const toDisplayableList = (list) => {
-    return list.map(
-      (item) =>
-        `${item.completed ? "[x]" : "[]"} ${item.title} ${
-          item.dueDate === new Date().toLocaleDateString("en-CA")
-        }`
-    );
-    // Format the To-Do list here, and return the output string
-    // as per the format given above.
+    return list.map((todoItem, index) => {
+      const checkbox = todoItem.completed ? "[x]" : "[ ]";
+      return `${checkbox} ${todoItem.title} ${todoItem.dueDate}`;
+    }).join('\n');
   }
 
   return {
@@ -52,7 +45,6 @@ const todoList = () => {
     toDisplayableList
   };
 };
-
 // ####################################### #
 // DO NOT CHANGE ANYTHING BELOW THIS LINE. #
 // ####################################### #
